@@ -52,22 +52,6 @@ function showPlantList() {
     let myUI = document.getElementById("divPlantList");
 
 
-    //let ol = document.createElement('ol');
-    //myUI.appendChild(ol);
-    /* for(let i = 0; i < plantArray.length; i++)
-    {
-        let li = document.createElement('li');
-        ol.appendChild(li);
-        let tempStr = "<a href=#EditplantArray[i].PlantName + "<br>" + 
-        "Date Germinated: " + plantArray[i].Germinated + "<br>" + 
-        "Date Planted: " + plantArray[i].Planted + "<br>" + 
-        "Time to Bloom" + plantArray[i].Bloomed + "<br>" +
-        "Quantity: " + plantArray[i].Quantity + "<br>" +
-        "Scoville Scale: " + plantArray[i].ScovilleScale;
-        li.innerHTML =tempStr;
-    };
-*/
-
     while (divPlantList.firstChild) {   
         divPlantList.removeChild(divPlantList.firstChild);
     };
@@ -83,17 +67,15 @@ function showPlantList() {
     });
     myUI.appendChild(ul);
 
-    // now we have the HTML done to display out list, 
-    // next we make them active buttons
-    // set up an event for each new li item, 
+
     var myArray = document.getElementsByClassName("onePlant");
     Array.from(myArray).forEach(function (element) {
         element.addEventListener('click', function () {
-        // get that data-parm we added for THIS particular li as we loop thru them
-        var parm = this.getAttribute("data-parm");  // passing in the record.Id
-        // get our hidden <p> and write THIS ID value there
+
+        var parm = this.getAttribute("data-parm");  
+ 
         document.getElementById("IDparmHere").innerHTML = parm;
-        // now jump to our page that will use that one item
+    
         document.location.href = "index.html#Edit";
         });
     });
