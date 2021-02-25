@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
   <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-  <!-- <script src="index.js"></script>
-  <link rel="stylesheet" type="text/css" href="index.css"> -->
+  <!-- <script src="index.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="index.css">
 
 </head>
 
@@ -24,7 +24,16 @@
     <!--   page header -->
     <div data-role="header" data-theme='a'>
       <h1>Planting Manager</h1>
+      <div data-role="navbar" data-theme='b'>
+        <ul>
+          <li><a href="#home">Home Page</a></li>
+          <li><a href="#Load">Add Flower</a></li>
+          <li><a href="#ListAll">Flower Data</a></li>
+        </ul>
+      </div><!-- /navbar -->
     </div>
+
+    
 
     <!--   page content -->
     <div data-role="content" data-theme='b'>
@@ -48,12 +57,42 @@
     <!--  page header -->
     <div data-role="header" data-theme='a'>
       <h1>Data</h1>
+      <div data-role="navbar" data-theme='b'>
+        <ul>
+          <li><a href="#home">Home Page</a></li>
+          <li><a href="#Load">Add Flower</a></li>
+          <li><a href="#ListAll">Flower Data</a></li>
+        </ul>
+      </div><!-- /navbar -->
 
     </div>
     <!-- page content -->
     <div data-role="content" data-theme='c'>
       <h2>Enter a flower/plant</h2>
-      <input type="text" value="" id="title" />
+      <!-- <div class="tooltip">Enter Date Germinated
+        <span class="tooltiptext">
+          Germinated means when the plant has bloomed
+        </span>
+
+      </div> -->
+      <!-- <input type=date value=""> -->
+        Enter plant name <br />
+        <input type="text" value="" id="plantName"/>
+        Enter date germinated <br />
+        <input type="date" value="" id="dateGerminated" />
+        Enter date planted <br />
+        <input type="date" value="" id="datePlanted" />
+        Enter date to bloom <br />
+        <input type="date" value="" id="dateBloomed" />
+        Enter quantity <br />
+        <input type="number" value="1" id="URL" min="1"/>
+        <div class="slidercontainer">
+          <label for="slider1">Enter Scoville Scale (for hot plants)</label>
+          <input type="range" name="slider1" id="slider1" min="1" max="16000000">
+        </div>
+        
+        <button type="button" onclick="SubmitPlant()">Submit</button>
+
     </div>
 
     <!--   page footer -->
@@ -69,12 +108,21 @@
     <!--   page header -->
     <div data-role="header" data-theme='a'>
       <h1>List of Plants/Flowers</h1>
+      <div data-role="navbar" data-theme='b'>
+        <ul>
+          <li><a href="#home">Home Page</a></li>
+          <li><a href="#Load">Add Flower</a></li>
+          <li><a href="#ListAll">Flower Data</a></li>
+        </ul>
+      </div><!-- /navbar -->
 
     </div>
     <!--   page content -->
     <div data-role="content" data-theme='e'>
-      <p>All Flowers/Plants:</p>
-      <div id="divMovieList"></div>
+      <h2>All Flowers/Plants:</h2>
+      <div id="divPlantList">
+
+      </div>
     </div>
 
 
@@ -87,7 +135,7 @@
   <!-- End of  page ------------------------------------------------------------------>
 
 
-
+<script src="index.js"></script>
 </body>
 
 </html>
