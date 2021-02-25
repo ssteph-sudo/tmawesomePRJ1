@@ -27,7 +27,7 @@
       <div data-role="navbar" data-theme='b'>
         <ul>
           <li><a href="#home">Home Page</a></li>
-          <li><a href="#Load">Add Flower</a></li>
+          <li><a href="#Load">Add Plant</a></li>
           <li><a href="#ListAll">Flower Data</a></li>
         </ul>
       </div><!-- /navbar -->
@@ -60,7 +60,7 @@
       <div data-role="navbar" data-theme='b'>
         <ul>
           <li><a href="#home">Home Page</a></li>
-          <li><a href="#Load">Add Flower</a></li>
+          <li><a href="#Load">Add Plant</a></li>
           <li><a href="#ListAll">Flower Data</a></li>
         </ul>
       </div><!-- /navbar -->
@@ -76,21 +76,25 @@
 
       </div> -->
       <!-- <input type=date value=""> -->
-        Enter plant name <br />
+        Enter Plant Name <br />
         <input type="text" value="" id="plantName"/>
-        Enter date germinated <br />
+        Enter Date Germinated <br />
         <input type="date" value="" id="dateGerminated" />
-        Enter date planted <br />
+        Enter Date Planted <br />
         <input type="date" value="" id="datePlanted" />
-        Enter date to bloom <br />
-        <input type="date" value="" id="dateBloomed" />
-        Enter quantity <br />
+        Time to Bloom <br />
+        <input type="text" value="" id="dateBloomed" />
+        Date Last Given Food <br />
+        <input type="date" value="" id="FoodDate" />
+        Enter Quantity <br />
         <input type="number" value="1" id="URL" min="1"/>
         <div class="slidercontainer">
           <label for="slider1">Enter Scoville Scale (for hot plants)</label>
           <input type="range" name="slider1" id="slider1" min="1" max="16000000">
         </div>
-        
+        Notes: <br />
+        <input type="text" value="" id="Note" />
+
         <button type="button" onclick="SubmitPlant()">Submit</button>
 
     </div>
@@ -111,7 +115,7 @@
       <div data-role="navbar" data-theme='b'>
         <ul>
           <li><a href="#home">Home Page</a></li>
-          <li><a href="#Load">Add Flower</a></li>
+          <li><a href="#Load">Add Plant</a></li>
           <li><a href="#ListAll">Flower Data</a></li>
         </ul>
       </div><!-- /navbar -->
@@ -132,6 +136,45 @@
     </div>
   </div>
   </div>
+  <!-- End of  page ------------------------------------------------------------------>
+
+  <div data-role="page" id="Edit">
+    <!--   page header -->
+    <div data-role="header" data-theme='a'>
+      <h1>Edit Record</h1>
+      <div data-role="navbar" data-theme='b'>
+        <ul>
+          <li><a href="#home">Home Page</a></li>
+          <li><a href="#Load">Add Plant</a></li>
+          <li><a href="#ListAll">Flower Data</a></li>
+        </ul>
+      </div><!-- /navbar -->
+
+    </div>
+    <!--   page content -->
+
+      <div data-role="content" data-theme='c'>
+        <h1> Details of the Planting</h1>
+        <p id="PlantName"></p>
+        <p id="Germinated"></p>
+        <p id="Bloomed"></p>
+        <p id="FoodDate"></p>
+        <p id="Quantity"></p>
+        <p id="Scoville"></p>
+        <p id="Notes"></p>
+  
+      </div>
+  
+
+
+    <!--   page footer -->
+    <div data-role="footer" data-theme='b'>
+        <h1>2021 Kurray Designs</h1>
+    </div>
+  </div>
+  </div>
+
+  <p id="IDparmHere" hidden>change1</p> 
   <!-- End of  page ------------------------------------------------------------------>
 
 
