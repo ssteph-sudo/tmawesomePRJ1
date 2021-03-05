@@ -69,13 +69,7 @@
     <!-- page content -->
     <div data-role="content" data-theme='c'>
       <h2>Enter a flower/plant</h2>
-      <!-- <div class="tooltip">Enter Date Germinated
-        <span class="tooltiptext">
-          Germinated means when the plant has bloomed
-        </span>
 
-      </div> -->
-      <!-- <input type=date value=""> -->
         Enter Plant Name <br />
         <input type="text" value="" id="plantName"/>
         Enter Date Germinated <br />
@@ -95,7 +89,7 @@
         Notes: <br />
         <input type="text" value="" id="Note" />
 
-        <button type="button" onclick="SubmitPlant()">Submit</button>
+        <button type="button" id="submitPlantButton">Submit</button>
 
     </div>
 
@@ -125,8 +119,9 @@
     <div data-role="content" data-theme='e'>
       <h2>All Flowers/Plants:</h2>
       <div id="divPlantList">
-
+        
       </div>
+
     </div>
 
 
@@ -162,6 +157,7 @@
         <p id="Quantity"></p>
         <p id="Scoville"></p>
         <p id="Notes"></p>
+        <button id="deletePlantButton" type="button" style="background-color: lightcoral;">Delete Plant</button>
   
       </div>
   
