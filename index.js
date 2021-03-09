@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let arrayPointer = GetLocalID(localID);
         document.getElementById("PlantName").innerHTML = "Name of Plant: " + plantArray[arrayPointer].PlantName;
         document.getElementById("Germinated").innerHTML = "Date Germinated: " + plantArray[arrayPointer].Germinated;
+        document.getElementById("Planted").innerHTML = "Date Planted: " + plantArray[arrayPointer].Planted;
         document.getElementById("Bloomed").innerHTML = "Time to Bloom: " + plantArray[arrayPointer].Bloomed;
         document.getElementById("FoodDate").innerHTML = "Date Last Given Food: " + plantArray[arrayPointer].FoodDate;
         document.getElementById("Quantity").innerHTML = "Quantity: " + plantArray[arrayPointer].Quantity;
@@ -101,7 +102,7 @@ function showPlantList() {
         var li = document.createElement('li');
         li.classList.add('onePlant'); 
         li.setAttribute("data-parm", element.ID);
-        li.innerHTML = element.ID + "   " + element.PlantName + "   " + element.Germinated
+        li.innerHTML = /*element.ID */element.PlantName + "   " + element.Germinated
         ol.appendChild(li);
     });
     myUI.appendChild(ol);
