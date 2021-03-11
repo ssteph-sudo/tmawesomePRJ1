@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Flowers Main</title>
+  <!-- <documentation at http://demos.jquerymobile.com/1.4.1/ > -->
+
+  <link href='https://fonts.googleapis.com/css?family=Nova Flat' rel='stylesheet'>
+
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <!-- <script src="index.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+</head>
+
+<body>
+
+  <!-- Start of  page ------------------------------------------------------------------>
+  <div data-role="page" id="home">
+
+    <!--   page header -->
+    <div data-role="header" data-theme='a'>
+      <h1>Planting Manager</h1>
+      <div data-role="navbar" data-theme='b'>
+        <ul>
+          <li><a href="#home">Home Page</a></li>
+          <li><a href="#Load">Add Plant</a></li>
+          <li><a href="#ListAll">Flower Data</a></li>
+        </ul>
+      </div><!-- /navbar -->
+    </div>
+
+    
+
+    <!--   page content -->
+    <div data-role="content" data-theme='b'>
+      <div class="newFont">
+        <h2>This app allows you to manage your home garden planting schedule</h2>
+      </div>
+    </div>
+
+    <!--  page footer -->
+    <div data-role="footer" data-theme='b'>
+      <h1>2021 Kurray Designs</h1>
+    </div>
+  </div>
+  <!-- End of  page ------------------------------------------------------------------>
+
+
+
+
+
+  <div data-role="page" id="Load">
+    <!--  page header -->
+    <div data-role="header" data-theme='a'>
+      <h1>Data</h1>
+      <div data-role="navbar" data-theme='b'>
+        <ul>
+          <li><a href="#home">Home Page</a></li>
+          <li><a href="#Load">Add Plant</a></li>
+          <li><a href="#ListAll">Flower Data</a></li>
+        </ul>
+      </div><!-- /navbar -->
+
+    </div>
+    <!-- page content -->
+    <div data-role="content" data-theme='c'>
+      <h2>Enter a flower/plant</h2>
+
+        Enter Plant Name <br />
+        <input type="text" value="" id="plantName"/>
+        Enter Date Germinated <br />
+        <input type="date" value="" id="dateGerminated" />
+        Enter Date Planted <br />
+        <input type="date" value="" id="datePlanted" />
+        Time to Bloom <br />
+        <input type="text" value="" id="dateBloomed" />
+        Date Last Given Food <br />
+        <input type="date" value="" id="dateGivenFood" />
+        Enter Quantity <br />
+        <input type="number" value="1" id="quantityInput" min="1"/>
+        <div class="slidercontainer">
+          <label for="slider1">Enter Scoville Scale (for hot plants)</label>
+          <input type="range" name="slider1" id="slider1" min="1" max="16000000">
+        </div>
+        Notes: <br />
+        <input type="text" value="" id="notesInput"/>
+
+        <button type="button" id="submitPlantButton" data-inline="true" data-icon="check">Submit</button>
+        <button type="button" id="clearDataButton" data-inline="true" data-icon="refresh">Clear</button>
+
+    </div>
+
+    <!--   page footer -->
+    <div data-role="footer" data-theme='b'>
+        <h1>2021 Kurray Designs</h1>
+    </div>
+  </div>
+  <!-- End of  page ------------------------------------------------------------------>
+
+
+
+  <div data-role="page" id="ListAll">
+    <!--   page header -->
+    <div data-role="header" data-theme='a'>
+      <h1>List of Plants/Flowers</h1>
+      <div data-role="navbar" data-theme='b'>
+        <ul>
+          <li><a href="#home">Home Page</a></li>
+          <li><a href="#Load">Add Plant</a></li>
+          <li><a href="#ListAll">Flower Data</a></li>
+        </ul>
+      </div><!-- /navbar -->
+
+    </div>
+    <!--   page content -->
+    <div data-role="content" data-theme='e'>
+      <h2>All Flowers/Plants:</h2>
+      <div id="divPlantList">
+
+      </div>
+
+      <div data-role="controlgroup" data-type="horizontal">
+        <button id="sortAlphabetically" type="button" data-inline="true">Sort Alphabetically</button>
+        <button id="sortDate" type="button" data-inline="true" >Sort by Date</button>
+      </div>
+    </div>
+
+
+    <!--   page footer -->
+    <div data-role="footer" data-theme='b'>
+        <h1>2021 Kurray Designs</h1>
+    </div>
+  </div>
+  </div>
+  <!-- End of  page ------------------------------------------------------------------>
+
+  <div data-role="page" id="Edit">
+    <!--   page header -->
+    <div data-role="header" data-theme='a'>
+      <h1>View Entry</h1>
+      <div data-role="navbar" data-theme='b'>
+        <ul>
+          <li><a href="#home">Home Page</a></li>
+          <li><a href="#Load">Add Plant</a></li>
+          <li><a href="#ListAll">Flower Data</a></li>
+        </ul>
+      </div><!-- /navbar -->
+
+    </div>
+    <!--   page content -->
+
+      <div data-role="content" data-theme='c'>
+        <h1> Details of the Planting</h1>
+        <p id="PlantName"></p>
+        <p id="Germinated"></p>
+        <p id="Planted"></p>
+        <p id="Bloomed"></p>
+        <p id="FoodDate"></p>
+        <p id="Quantity"></p>
+        <p id="Scoville"></p>
+        <p id="Notes"></p>
+        <button id="modifyPlantButton" type="button" data-icon="plus" data-inline="true" style="background-color: lightgreen;">Edit Details</button>
+        <button id="deletePlantButton" type="button" data-icon="delete" data-inline="true" style="background-color: lightcoral;">Delete Plant</button>
+  
+      </div>
+
+    <!--   page footer -->
+    <div data-role="footer" data-theme='b'>
+        <h1>2021 Kurray Designs</h1>
+    </div>
+  </div>
+  </div>
+
+  <p id="IDparmHere" hidden>change1</p> 
+  <!-- End of  page ------------------------------------------------------------------>
+
+  <div data-role="page" id="Modify">
+    <!--   page header -->
+    <div data-role="header" data-theme='a'>
+      <h1>Modify Current Data</h1>
+      <div data-role="navbar" data-theme='b'>
+        <ul>
+          <li><a href="#home">Home Page</a></li>
+          <li><a href="#Load">Add Plant</a></li>
+          <li><a href="#ListAll">Flower Data</a></li>
+        </ul>
+      </div><!-- /navbar -->
+
+    </div>
+    <!--   page content -->
+    <div data-role="content" data-theme='e' style="background-color: lightgreen;">
+      <h2 id="modifyHeader"></h2>
+
+      Enter Plant Name <br />
+      <input type="text" id="modifyPlantName"/>
+      Enter Date Germinated <br />
+      <input type="date" id="modifyDateGerminated"/>
+      Enter Date Planted <br />
+      <input type="date" id="modifyDatePlanted" />
+      Time to Bloom <br />
+      <input type="text" id="modifyDateBloomed" />
+      Date Last Given Food <br />
+      <input type="date" id="modifyDateGivenFood" />
+      Enter Quantity <br />
+      <input type="number" id="modifyQuantityInput" min="1"/>
+      <div class="slidercontainer">
+        <label for="slider1">Enter Scoville Scale (for hot plants)</label>
+        <input type="range" name="slider1" id="modifySlider1" min="1" max="16000000">
+      </div>
+      Notes: <br />
+      <input type="text" value="" id="modifyNotesInput" />
+
+      <button type="button" id="submitModifyButton" data-inline="true" data-icon="check">Change</button>
+
+    </div>
+
+
+    <!--   page footer -->
+    <div data-role="footer" data-theme='b'>
+        <h1>2021 Kurray Designs</h1>
+    </div>
+  </div>
+   <!-- End of  page ------------------------------------------------------------------>
+  </div>
+
+<script src="index.js"></script>
+</body>
+
+</html>
