@@ -1,3 +1,5 @@
+//const { json } = require("body-parser");
+
 let plantArray = [];
 
 
@@ -23,36 +25,61 @@ document.addEventListener("DOMContentLoaded", function () {
 
     $(document).on("pagebeforeshow", "#ListAll", function (event) {  
         
-        showPlantList();
+        //showPlantList();
+        FillArrayFromServer();
     });
-    $(document).on("pagebeforeshow", "#Edit", function (event) {   
-        let localID = document.getElementById("IDparmHere").innerHTML;
-        let arrayPointer = GetLocalID(localID);
-        document.getElementById("PlantName").innerHTML = "Name of Plant: " + plantArray[arrayPointer].PlantName;
-        document.getElementById("Germinated").innerHTML = "Date Germinated: " + plantArray[arrayPointer].Germinated;
-        document.getElementById("Planted").innerHTML = "Date Planted: " + plantArray[arrayPointer].Planted;
-        document.getElementById("Bloomed").innerHTML = "Time to Bloom: " + plantArray[arrayPointer].Bloomed;
-        document.getElementById("FoodDate").innerHTML = "Date Last Given Food: " + plantArray[arrayPointer].FoodDate;
-        document.getElementById("Quantity").innerHTML = "Quantity: " + plantArray[arrayPointer].Quantity;
-        document.getElementById("Scoville").innerHTML = "Scoville Scale: " + plantArray[arrayPointer].ScovilleScale;
-        document.getElementById("Notes").innerHTML = "Notes: " + plantArray[arrayPointer].Notes;
+    $(document).on("pagebeforeshow", "#Edit", function (event) {
+        
+        if (document.getElementById("IDparmHere").innerHTML == "change1") {
+            //alert('didnt work boi');
+            document.location.href = "index.html#ListAll";
+        }
+        else {
+            let localID = document.getElementById("IDparmHere").innerHTML;
+            let arrayPointer = GetLocalID(localID);
+            document.getElementById("PlantName").innerHTML = "Name of Plant: " + plantArray[arrayPointer].PlantName;
+            document.getElementById("Germinated").innerHTML = "Date Germinated: " + plantArray[arrayPointer].Germinated;
+            document.getElementById("Planted").innerHTML = "Date Planted: " + plantArray[arrayPointer].Planted;
+            document.getElementById("Bloomed").innerHTML = "Time to Bloom: " + plantArray[arrayPointer].Bloomed;
+            document.getElementById("FoodDate").innerHTML = "Date Last Given Food: " + plantArray[arrayPointer].FoodDate;
+            document.getElementById("Quantity").innerHTML = "Quantity: " + plantArray[arrayPointer].Quantity;
+            document.getElementById("Scoville").innerHTML = "Scoville Scale: " + plantArray[arrayPointer].ScovilleScale;
+            document.getElementById("Notes").innerHTML = "Notes: " + plantArray[arrayPointer].Notes;
+        }
     });
 
     document.getElementById("submitPlantButton").addEventListener("click", function () {
 
-        plantArray.push(new PlantObject(document.getElementById("plantName").value, document.getElementById("dateGerminated").value, document.getElementById("datePlanted").value,
+        let tempPlant = new PlantObject(document.getElementById("plantName").value, document.getElementById("dateGerminated").value, document.getElementById("datePlanted").value,
         document.getElementById("dateBloomed").value, document.getElementById("quantityInput").value, document.getElementById("slider1").value, document.getElementById("dateGivenFood").value,
-        document.getElementById("notesInput").value));
+        document.getElementById("notesInput").value);
 
-        document.location.href = "index.html#ListAll";
-        clearInputFields();
+        const request = new Request('/addPlant', {
+            method: 'POST',
+            body:JSON.stringify(tempPlant),
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        });
 
+        fetch(request)
+            .then(function (theResponsePromise) {
+                return theResponsePromise.json() })
+                .then(function(theResponsePromiseJson) {
+                    console.log(theResponsePromiseJson.toString()),
+                    document.location.href = "#ListAll";
+                })
+
+                .catch(function (err) {
+                    console.log(err);
+                });
     });
 
     document.getElementById("deletePlantButton").addEventListener("click", function () {
         let localID = document.getElementById("IDparmHere").innerHTML;
+        //console.log(localID);
         deletePlant(localID);
-        showPlantList();
+        FillArrayFromServer();
         document.location.href = "index.html#ListAll";
     });
 
@@ -63,14 +90,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById("submitModifyButton").addEventListener("click", function() {
-        let localID = document.getElementById("IDparmHere").innerHTML;
 
-        let arrayPointer = GetLocalID(localID);
-
-        plantArray[arrayPointer] = new PlantObject(document.getElementById("modifyPlantName").value, document.getElementById("modifyDateGerminated").value,
+        let newPlant = new PlantObject(document.getElementById("modifyPlantName").value, document.getElementById("modifyDateGerminated").value,
         document.getElementById("modifyDatePlanted").value, document.getElementById("modifyDateBloomed").value, document.getElementById("modifyQuantityInput").value,
         document.getElementById("modifySlider1").value, document.getElementById("modifyDateGivenFood").value, document.getElementById("modifyNotesInput").value);
 
+        modifyPlant(newPlant);
         document.location.href = "index.html#ListAll";
     });
 
@@ -122,9 +147,16 @@ function showPlantList() {
     }
 
 function deletePlant(plantID) {
-    let arrayPointer = GetLocalID(plantID);
-    plantArray.splice(arrayPointer, 1);
-}
+    fetch('/deletePlant/' + plantID, {
+        method:'DELETE'
+    })
+    .then(function(theResponsePromise) {
+        alert("Plant deleted successfully in cloud")
+    })
+    .catch(function (err) {
+        alert("Plant not deleted in cloud" + err);
+    });
+};
 
 function GetLocalID(localID) {
     for (let i = 0; i < plantArray.length; i++) {
@@ -171,3 +203,43 @@ function sortByGerminatedDate() {
     plantArray.sort((a, b) => (a.Germinated > b.Germinated) ? 1 : -1)
     showPlantList();
 }
+
+function FillArrayFromServer() {
+    fetch('/plantList')
+    .then(function(theResponsePromise) {
+        return theResponsePromise.json();
+    })
+    .then(function (serverData) {
+        console.log(serverData);
+        plantArray.length = 0;
+        plantArray = serverData;
+        showPlantList(); //createList
+    })
+    .catch(function (err) {
+        console.log(err);
+    });
+};
+
+function modifyPlant(newPlant) {
+    newPlant.ID = document.getElementById("IDparmHere").innerHTML;
+
+    const request = new Request('/modifyPlant/' + newPlant.ID, {
+        method: 'PUT',
+        body: JSON.stringify(newPlant),
+        headers: new Headers ({
+            'Content-Type': 'application/json'
+        })
+    });
+
+    fetch(request)
+        .then(function (theResponsePromise) {
+            return theResponsePromise.json() })
+        .then(function (theResponsePromiseJson) {
+            console.log(theResponsePromiseJson.toString()),
+            document.location.href = "#ListAll"
+        })
+
+        .catch(function (err) {
+            console.log(err);
+        });
+};
