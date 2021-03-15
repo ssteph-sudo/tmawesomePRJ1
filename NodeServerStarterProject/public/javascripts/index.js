@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         //showPlantList();
         FillArrayFromServer();
+        document.location.href = "index.html#ListAll"; //This seems to fix the error of the null ID.
     });
     $(document).on("pagebeforeshow", "#Edit", function (event) {
         
@@ -151,10 +152,10 @@ function deletePlant(plantID) {
         method:'DELETE'
     })
     .then(function(theResponsePromise) {
-        alert("Plant deleted successfully in cloud")
+        //alert("Plant deleted successfully in cloud")
     })
     .catch(function (err) {
-        alert("Plant not deleted in cloud" + err);
+        //alert("Plant not deleted in cloud" + err);
     });
 };
 
