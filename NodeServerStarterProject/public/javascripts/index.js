@@ -2,7 +2,7 @@
 
 let plantArray = [];
 
-
+let sliderIndex = 0;
 
 
 let PlantObject = function (pPlantName, pGerminated, pPlanted, pBloomed, pQuantity, pScoScale,pFoodDate,pNotes) {
@@ -111,6 +111,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("sortDate").addEventListener("click", function() {
         sortByGerminatedDate();
     });
+
+    startImageSwapping();
 });  
 
 function showPlantList() {
@@ -244,3 +246,18 @@ function modifyPlant(newPlant) {
             console.log(err);
         });
 };
+
+function startImageSwapping() {
+    let sliderClass = document.getElementsByClassName("mySlidesClass");
+    for(let i = 0; i < sliderClass.length; i++) {
+        sliderClass[i].style.display = "none";
+    }
+
+    if (sliderIndex >= sliderClass.length) {
+        sliderIndex = 0;
+    }
+    sliderClass[sliderIndex].style.display = "block";
+    sliderIndex++;
+
+    setTimeout(startImageSwapping, 2000); //changes image every 2 seconds
+}

@@ -26,8 +26,8 @@ let PlantObject = function (pPlantName, pGerminated, pPlanted, pBloomed, pQuanti
     this.Notes= pNotes;
 }
 
-serverPlantArray.push(new PlantObject("Sunflower", "02/27/2021", "02/24/2021", "6-8 Weeks", "3", "40000","02/28/2021", "Needs lots of water."));
-serverPlantArray.push(new PlantObject("Peas", "03/27/2021", "02/24/2021", "6-8 Weeks", "3", "40000","02/28/2021", "Grows well in partial shade."));
+//serverPlantArray.push(new PlantObject("Sunflower", "02/27/2021", "02/24/2021", "6-8 Weeks", "3", "40000","02/28/2021", "Needs lots of water."));
+//serverPlantArray.push(new PlantObject("Peas", "03/27/2021", "02/24/2021", "6-8 Weeks", "3", "40000","02/28/2021", "Grows well in partial shade."));
 
 
 // just one "site" with 2 routes
